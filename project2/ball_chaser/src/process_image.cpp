@@ -3,6 +3,7 @@
 #include <sensor_msgs/Image.h>
 
 ros::ServiceClient client;
+int r, g, b;
 
 void drive_robot(float lin_x, float ang_z)
 {
@@ -18,19 +19,21 @@ void drive_robot(float lin_x, float ang_z)
 
 void process_image_callback(const sensor_msgs::Image img)
 {
-    int white_pixel[] = {255, 255, 255};
+    int pixel[] = {r, g, b};
     int position[] = {0, 0, 0};
+
+    ROS_INFO("Pixel: R=%i G=%i B=%i", pixel[0], pixel[1], pixel[2]);
 
     ROS_INFO("Image received: %u x %u (%u) - encoding: %s", img.height, img.width, img.step, img.encoding.c_str());
     for (int i = 0; i < img.height * img.step; i+=3) {
-        if ( (white_pixel[0] == img.data[i]) &&
-             (white_pixel[1] == img.data[i+1]) &&
-             (white_pixel[2] == img.data[i+2]) ) {
+        if ( (pixel[0] == img.data[i]) &&
+             (pixel[1] == img.data[i+1]) &&
+             (pixel[2] == img.data[i+2]) ) {
             int yPos = i / img.step;
             int xPos = (i % img.step) / 3;
             int posIndex = (xPos / (img.width / 3));
             if (posIndex > 2) continue;
-            // ROS_INFO("White pixel found: %i x %i (%i)", yPos, xPos, posIndex);
+            // ROS_INFO("Pixel found: %i x %i (%i)", yPos, xPos, posIndex);
 
             position[posIndex] += 1;
         }
@@ -39,7 +42,7 @@ void process_image_callback(const sensor_msgs::Image img)
     int left = position[0];
     int center = position[1];
     int right = position[2];
-    ROS_INFO("White pixel position: left=%i / center=%i / right=%i", left, center, right);
+    ROS_INFO("Pixel position: left=%i / center=%i / right=%i", left, center, right);
 
     if ( (left > 0) || (center > 0) || (right > 0) ) {
         if ( (left > center) && (left > right) ) {
@@ -66,6 +69,11 @@ int main(int argc, char** argv)
 {
     ros::init(argc, argv, "process_image");
     ros::NodeHandle n;
+
+    std::string node_name = ros::this_node::getName();
+    n.param(node_name + "/ball_r", r, 255);
+    n.param(node_name + "/ball_g", g, 255);
+    n.param(node_name + "/ball_b", b, 255);
 
     client = n.serviceClient<ball_chaser::DriveToTarget>("/ball_chaser/command_robot");
 

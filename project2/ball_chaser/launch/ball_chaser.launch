@@ -3,6 +3,12 @@
     <!-- The drive_bot node -->
     <node name="drive_bot" type="drive_bot" pkg="ball_chaser" output="screen"/>
 
-    <node name="process_image" type="process_image" pkg="ball_chaser" output="screen"/>
+    <node name="process_image" type="process_image" pkg="ball_chaser" output="screen">
+        <rosparam>
+            ball_r: 255
+            ball_g: 255
+            ball_b: 255
+        </rosparam>
+    </node>
 
 </launch>
