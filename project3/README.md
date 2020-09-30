@@ -6,7 +6,7 @@ This is the third project for Udacity Robotics Software Engineer nanodegree.
 
 Screenshots images of the localized teleoperated robot are in the `screenshots` directory.
 
-## Instruction
+## Instructions
 
 To run the project:
 
