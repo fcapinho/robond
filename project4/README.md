@@ -2,6 +2,10 @@
 
 This is the fourth project for Udacity Robotics Software Engineer nanodegree.
 
+## Database
+
+RTAB-Map database is stored in the `db` directory with [Git Large File Storage (LFS)](https://git-lfs.github.com/).
+
 ## Instructions
 
 To run the project:
