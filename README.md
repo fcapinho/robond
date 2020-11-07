@@ -87,3 +87,4 @@ $ mkdir src/add_markers
 Setup and tests are run on the basic shape building from [Part 2 - Lesson 1](https://classroom.udacity.com/nanodegrees/nd209/parts/852e258d-b6c9-4823-b0af-0a7f77379583/modules/8a9ec5d0-dbd1-4f9b-80c5-c01a46aee151/lessons/9b7f4396-2279-4c4b-a785-4142bd00ad8c/concepts/00f1b2c7-0fe6-4bad-9bf6-79efb1a9070d).
 
 ![basic building dimensions](images/basic_building.png)
+![basic building in Gazebo](images/basic_building.jpg)
