@@ -88,3 +88,18 @@ Setup and tests are run on the basic shape building from [Part 2 - Lesson 1](htt
 
 ![basic building dimensions](images/basic_building.png)
 ![basic building in Gazebo](images/basic_building.jpg)
+
+### Test SLAM
+
+Start Gazebo with a TurtleBot in the basic building world with `turtlebot_world.launch`.
+
+Run SLAM with `gmapping_demo.launch` and visualize it with `view_navigation.launch`.
+
+Operate the TurtleBot with the keyboard with `keyboard_teleop.launch`.
+
+```shell
+$ source devel/setup.bash
+$ ./test_slam.sh
+```
+
+![slam test](images/slam_test.png)
