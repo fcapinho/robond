@@ -93,7 +93,7 @@ Setup and tests are run on the basic shape building from [Part 2 - Lesson 1](htt
 
 Start Gazebo with a TurtleBot in the basic building world with `turtlebot_world.launch`.
 
-Run SLAM with `gmapping_demo.launch` and visualize it with `view_navigation.launch`.
+Run Simultaneous Localization and Mapping (SLAM) with `gmapping_demo.launch` and visualize it with `view_navigation.launch`.
 
 Operate the TurtleBot with the keyboard with `keyboard_teleop.launch`.
 
@@ -113,3 +113,13 @@ Save the map:
 ```shell
 $ rosrun map_server map_saver -f src/map/test_map
 ```
+
+### Test Navigation
+
+Start Gazebo with a TurtleBot in the basic building world with `turtlebot_world.launch`.
+
+Run Adaptive Monte Carlo Localization (AMCL) with `amcl_demo.launch`.
+
+Visualize and control, through 2D goals, navigation with `view_navigation.launch`.
+
+![navigation test](images/navigation_test.png)
