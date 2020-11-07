@@ -103,3 +103,13 @@ $ ./test_slam.sh
 ```
 
 ![slam test](images/slam_test.png)
+
+#### Save map
+
+Navigate the map until a sufficient detailed map is build:
+![initial map](images/initial_map.png)
+
+Save the map:
+```shell
+$ rosrun map_server map_saver -f src/map/test_map
+```
