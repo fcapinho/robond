@@ -123,3 +123,25 @@ Run Adaptive Monte Carlo Localization (AMCL) with `amcl_demo.launch`.
 Visualize and control, through 2D goals, navigation with `view_navigation.launch`.
 
 ![navigation test](images/navigation_test.png)
+
+### Navigation Goal Node
+
+Create new `pick_objects` package:
+```shell
+$ catkin_create_pkg pick_objects move_base_msgs actionlib roscpp
+```
+
+Add a new `pick_objects_node.cpp` file to implement navigation goal node.
+This node sends two goals to ROS Navigation Stack and wait 5 seconds between these two commands.
+It will interact with the [`move_base` package](https://wiki.ros.org/move_base) that implements an [Action](https://wiki.ros.org/actionlib) that given a goal will try to reach it.
+
+Change `CMakeLists.txt` to include the new file.
+```cmake
+include_directories(${catkin_INCLUDE_DIRS})
+add_executable(${PROJECT_NAME}_node src/pick_objects_node.cpp)
+target_link_libraries(${PROJECT_NAME}_node ${catkin_LIBRARIES})
+```
+
+Add the new node to the Navigation test script.
+
+![navigation goal](images/navigation_node.png)
