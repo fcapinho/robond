@@ -145,3 +145,24 @@ target_link_libraries(${PROJECT_NAME}_node ${catkin_LIBRARIES})
 Add the new node to the Navigation test script.
 
 ![navigation goal](images/navigation_node.png)
+
+### Visualization Markers
+
+Create new `add_markers` package:
+```shell
+$ catkin_create_pkg add_markers roscpp visualization_msgs
+```
+
+Change `CMakeLists.txt` to include the new file.
+```cmake
+include_directories(${catkin_INCLUDE_DIRS})
+add_executable(${PROJECT_NAME}_node src/add_markers_node.cpp)
+target_link_libraries(${PROJECT_NAME}_node ${catkin_LIBRARIES})
+```
+
+This node requires the Rviz [Marker](https://wiki.ros.org/rviz/DisplayTypes/Marker) display.
+Added this display to the navigation configuration and saved this new configuration.
+
+Add the new node to the Navigation test script and replace the `view_navigation.launch` with the new `view_navigation_marker.launch`.
+
+![add marker](images/marker.png)
