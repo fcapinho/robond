@@ -166,3 +166,68 @@ Added this display to the navigation configuration and saved this new configurat
 Add the new node to the Navigation test script and replace the `view_navigation.launch` with the new `view_navigation_marker.launch`.
 
 ![add marker](images/marker.png)
+
+## Home Service Robot
+
+Robot will pick up an object at a position and drop it off in another position.
+
+The following ROS Parameters configure this mission. All coordinates are from the `map` reference:
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| /pick_objects/pick_up_x | float | Pick up X position |
+| /pick_objects/pick_up_y | float | Pick up Y position |
+| /pick_objects/drop_off_x | float | Drop off X position |
+| /pick_objects/drop_off_y | float | Drop off Y position |
+
+`add_markers` node simulates object pick up and drop off by implementing two services:
+| Service | Description |
+|---------|-------------|
+| /add_markers/pick_object | Pick up object from position |  
+| /add_markers/drop_object | Drop off object at position |
+defined by `AddMarkersObject.srv`:
+```
+float32 x
+float32 y
+---
+bool success
+string message
+```
+
+1. Object will be drop off at pick up position
+2. `pick_objects` node will
+   1. Drive robot to pick up position
+   2. Call the `/add_markers/pick_object` service
+   3. Drive robot to drop off position
+   4. Call the `/add_markers/drop_object` service
+
+![home service robot nodes](images/home_service.png)
+
+### add_markers
+
+Change `CMakeLists.txt` to include the `srv` file.
+```cmake
+find_package(catkin REQUIRED COMPONENTS roscpp message_generation visualization_msgs)
+add_compile_options(-std=c++11)
+add_service_files(FILES AddMarkersObject.srv)
+generate_messages(DEPENDENCIES visualization_msgs)
+``` 
+
+Change `package.xml` to include message generation build dependency: 
+```xml
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+```
+
+### Example run
+
+Robot navigate to pick up position:
+![pick up navigation](images/home_service_start.png)
+
+Robot pick up the object:
+![robot at pick up position](images/home_service_pick.png)
+
+Robot navigate to drop off position:
+![drop off navigation](images/home_service_drop.png)
+
+Robot drop off the object:
+![final position](images/home_service_final.png)

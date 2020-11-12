@@ -1,0 +1,15 @@
+digraph home_service {
+    { rank = same; "pick_objects"; "add_markers"; }
+    pick_objects -> add_markers [label="\"/add_markers/pick_object\""];
+    pick_objects -> add_markers [label="\"/add_markers/drop_object\""];
+
+    rankdir = BT;
+    rviz [style=box];
+    pick_objects -> move_base [label="MoveBaseGoal"; arrowhead=empty];
+    add_markers -> rviz [arrowhead=tee; label="\"visualization_marker\""];
+
+    edge [color=blue, style=dotted];
+    rosparam [shape=box];
+    rosparam -> pick_objects [label = "\"~pick_up\""];
+    rosparam -> pick_objects [label = "\"~drop_off\""];
+}
