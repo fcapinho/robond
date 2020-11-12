@@ -184,6 +184,7 @@ The following ROS Parameters configure this mission. All coordinates are from th
 |---------|-------------|
 | /add_markers/pick_object | Pick up object from position |  
 | /add_markers/drop_object | Drop off object at position |
+
 defined by `AddMarkersObject.srv`:
 ```
 float32 x
@@ -193,14 +194,20 @@ bool success
 string message
 ```
 
-1. Object will be drop off at pick up position
-2. `pick_objects` node will
-   1. Drive robot to pick up position
-   2. Call the `/add_markers/pick_object` service
-   3. Drive robot to drop off position
-   4. Call the `/add_markers/drop_object` service
+`pick_objects` sequence:
+1. Drop off object at pick up position (call `/add_markers/drop_object` service)
+2. Drive robot to pick up position (call `move_base` action)
+3. Pick up object when position is reached (call `/add_markers/pick_object` service)
+4. Drive robot to drop off position (call `move_base` action)
+5. Drop off object when position is reached (call `/add_markers/drop_object` service)
+
+Home Service Robot nodes and connections:
 
 ![home service robot nodes](images/home_service.png)
+
+`pick_objects` reads parameters from `rosparam`, calls `move_base` action and `add_markers` services.
+
+`add_markers` publishes messages to `rviz`.
 
 ### add_markers
 
