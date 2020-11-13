@@ -101,6 +101,9 @@ private:
 
         if (service.call(srv)) {
             ROS_DEBUG_STREAM(srv.response.message << " (" << (srv.response.success ? "true" : "false") << ")");
+            if (!srv.response.success) {
+                ROS_ERROR("Object service failed");
+            }
         } else {
             ROS_ERROR("Failed to call object service");
         }
