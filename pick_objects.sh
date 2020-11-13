@@ -1,6 +1,10 @@
 #!/bin/sh
 
+# Navigation parameters
+xterm  -e  "roslaunch home_service.launch" &
+
 # Launch TurtleBot in Gazebo
+sleep 5
 xterm  -e  "roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=$PWD/src/world/test_building.world" &
 
 # Start AMCL
