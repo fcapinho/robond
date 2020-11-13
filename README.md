@@ -238,3 +238,7 @@ Robot navigate to drop off position:
 
 Robot drop off the object:
 ![final position](images/home_service_final.png)
+
+### Pick Object update
+
+The Home Service implementation of the `pick_objects` node requires ROS parameters. The startup localization and navigation script was updated to match this requirement.
