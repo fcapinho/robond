@@ -39,8 +39,8 @@ public:
         marker.lifetime = ros::Duration();
 
         // Initialize services
-        pick_service = n.advertiseService("/home_service/pick_object", &AddMarkers::handle_pick_object_request, this);
-        drop_service = n.advertiseService("/home_service/drop_object", &AddMarkers::handle_drop_object_request, this);
+        pick_service = n.advertiseService("/add_markers/pick_object", &AddMarkers::handle_pick_object_request, this);
+        drop_service = n.advertiseService("/add_markers/drop_object", &AddMarkers::handle_drop_object_request, this);
     }
 
 private:

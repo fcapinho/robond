@@ -17,8 +17,8 @@ public:
         ROS_INFO_STREAM("Parameters: (" << pu_x << "," << pu_y << ") -> (" << do_x << "," << do_y << ")");
 
         // Object handling services
-        client_drop = n.serviceClient<add_markers::AddMarkersObject>("/home_service/drop_object");
-        client_pick = n.serviceClient<add_markers::AddMarkersObject>("/home_service/pick_object");
+        client_drop = n.serviceClient<add_markers::AddMarkersObject>("/add_markers/drop_object");
+        client_pick = n.serviceClient<add_markers::AddMarkersObject>("/add_markers/pick_object");
     }
 
     int navigate()
