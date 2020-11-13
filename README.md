@@ -242,3 +242,7 @@ Robot drop off the object:
 ### Pick Object update
 
 The Home Service implementation of the `pick_objects` node requires ROS parameters. The startup localization and navigation script was updated to match this requirement.
+
+### Add Markers update
+
+The Home Service implementation of the `add_markers` node provides two services. The startup marker script was update to match thus implementation. To check the original script and implementation please refer to `ADD_MARKER` tag.
