@@ -38,11 +38,16 @@ and connected to other ROS components:
 Responsible for robot navigation and object handling.
 
 `pick_objects` tasks:
-1. Drop off object at pick up position (call `/add_markers/drop_object` service)
-2. Drive robot to pick up position (call `move_base` action)
-3. Pick up object when position is reached (call `/add_markers/pick_object` service)
-4. Drive robot to drop off position (call `move_base` action)
-5. Drop off object when position is reached (call `/add_markers/drop_object` service)
+1. Drop off object at pick up position 
+   - call `/add_markers/drop_object` service
+2. Drive robot to pick up position
+   - call `move_base` action
+3. Pick up object when position is reached
+   - call `/add_markers/pick_object` service
+4. Drive robot to drop off position
+   - call `move_base` action
+5. Drop off object when position is reached
+   - call `/add_markers/drop_object` service
 
 The following ROS Parameters configure the task. All coordinates are from the `map` reference.
 | Parameter | Type | Description |
@@ -95,10 +100,7 @@ $ catkin_create_pkg pick_objects move_base_msgs actionlib roscpp
 
 - Add a new `pick_objects_node.cpp` file to implement navigation goal node.
 
-This node sends two goals to ROS Navigation Stack.
-It interacts with the [`move_base` package](https://wiki.ros.org/move_base) that implements an [Action](https://wiki.ros.org/actionlib) that given a goal will try to reach it.
-
-And interacts with the add markers node through its servicces.
+This node sends goals to ROS Navigation Stack by interacting with the [`move_base` package](https://wiki.ros.org/move_base) that implements an [Action](https://wiki.ros.org/actionlib) that given a goal will try to reach it. It also interacts with the add markers node through its servicces.
 
 - Change `CMakeLists.txt` to include the new file.
 ```cmake
@@ -140,15 +142,15 @@ target_link_libraries(${PROJECT_NAME}_node ${catkin_LIBRARIES})
 
 - Add Rviz Marker
 
-This node requires the Rviz [Marker](https://wiki.ros.org/rviz/DisplayTypes/Marker) display.
-Added this display to the navigation configuration and saved this new configuration: `view_navigation_marker.launch`.
+This node requires a Rviz [Marker](https://wiki.ros.org/rviz/DisplayTypes/Marker) display.
+Added this display to the navigation configuration and saved this new configuration as `view_navigation_marker.launch`.
 
 ![add marker](images/marker.png)
 
 
 ##### Add Markers Script
 
-The Home Service implementation of the `add_markers` node provides two services. The startup marker script was update to match this implementation. To check the original script and implementation please refer to `FINAL_PROJECT_ADD_MARKER` git tag.
+The Home Service implementation of the `add_markers` node provides two services. The startup marker script was updated to match this implementation. To check the original script and implementation, as described on [Modeling Virtual Objects](https://classroom.udacity.com/nanodegrees/nd209/parts/75c8f42b-c844-4f61-b3c6-521956c5cf70/modules/aa8320a9-4fec-4d3b-a3e4-fcd532ba60ff/lessons/1ccf2893-a07b-41c5-b2ed-7cdc48bd26fc/concepts/95f86ccf-73c0-486d-b2d6-8945e6fde3e1), please refer to `FINAL_PROJECT_ADD_MARKER` git tag.
 
 ## Mapping
 
