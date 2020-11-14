@@ -1,5 +1,7 @@
 digraph home_service {
     { rank = same; "pick_objects"; "add_markers"; }
+    pick_objects [style=filled; fillcolor=cadetblue];
+    add_markers [style=filled; fillcolor=cadetblue];
     pick_objects -> add_markers [label="\"/add_markers/pick_object\""];
     pick_objects -> add_markers [label="\"/add_markers/drop_object\""];
 
