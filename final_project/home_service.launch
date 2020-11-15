@@ -1,0 +1,8 @@
+<launch>
+<rosparam>
+    /pick_objects/pick_up_x : 3.5
+    /pick_objects/pick_up_y : 4.0
+    /pick_objects/drop_off_x : 3.0
+    /pick_objects/drop_off_y : 0.0
+</rosparam>
+</launch>
