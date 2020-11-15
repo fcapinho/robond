@@ -12,10 +12,10 @@ The simulated robot is capable of navigating to pick up and deliver virtual obje
 Robot is simulated on [Gazebo](#gazebo) and managed by the [ROS](#ros) framework, including [Rviz](#rviz) for visualization. [Turtlebot](#turtlebot) model represents the robot.
 
 In order to complete this tasks, the following ROS packages where used:
-- [gmapping](https://wiki.ros.org/gmapping)
-- [turtlebot_teleop](https://wiki.ros.org/turtlebot_teleop)
-- [turtlebot_rviz_launchers](https://wiki.ros.org/turtlebot_rviz_launchers)
-- [turtlebot_gazebo](https://wiki.ros.org/turtlebot_gazebo)
+- [gmapping](#gmapping)
+- [turtlebot_teleop](#turtlebot_teleop)
+- [turtlebot_rviz_launchers](#turtlebot_rviz_launchers)
+- [turtlebot_gazebo](#turtlebot_gazebo)
 
 Please refer to [Setup](#setup) section for a detailed project environment configuration description.
 
@@ -134,7 +134,7 @@ add_executable(${PROJECT_NAME}_node src/add_markers_node.cpp)
 target_link_libraries(${PROJECT_NAME}_node ${catkin_LIBRARIES})
 ``` 
 
-- Change `package.xml` to include message generation build dependency: 
+- Change `package.xml` to include message generation build and execution dependencies: 
 ```xml
   <build_depend>message_generation</build_depend>
   <exec_depend>message_runtime</exec_depend>
@@ -150,7 +150,9 @@ Added this display to the navigation configuration and saved this new configurat
 
 ##### Add Markers Script
 
-The Home Service implementation of the `add_markers` node provides two services. The startup marker script was updated to match this implementation. To check the original script and implementation, as described on [Modeling Virtual Objects](https://classroom.udacity.com/nanodegrees/nd209/parts/75c8f42b-c844-4f61-b3c6-521956c5cf70/modules/aa8320a9-4fec-4d3b-a3e4-fcd532ba60ff/lessons/1ccf2893-a07b-41c5-b2ed-7cdc48bd26fc/concepts/95f86ccf-73c0-486d-b2d6-8945e6fde3e1), please refer to `FINAL_PROJECT_ADD_MARKER` git tag.
+The Home Service implementation of the `add_markers` node provides two services. The startup marker script was updated to match this implementation. 
+
+To check the original script and implementation, as described on [Modeling Virtual Objects](https://classroom.udacity.com/nanodegrees/nd209/parts/75c8f42b-c844-4f61-b3c6-521956c5cf70/modules/aa8320a9-4fec-4d3b-a3e4-fcd532ba60ff/lessons/1ccf2893-a07b-41c5-b2ed-7cdc48bd26fc/concepts/95f86ccf-73c0-486d-b2d6-8945e6fde3e1), please refer to the `FINAL_PROJECT_ADD_MARKER` git tag.
 
 ## Mapping
 
@@ -181,9 +183,14 @@ $ rosrun map_server map_saver -f src/map/test_map
 
 Start Gazebo with a TurtleBot in the basic building world with `turtlebot_world.launch`.
 
-Run Adaptive Monte Carlo Localization (AMCL) with `amcl_demo.launch`.
+Run Adaptive Monte Carlo Localization (AMCL) with `amcl_demo.launch`, referring to the map generated on the [previous](#build-a-map) section.
 
 Visualize and control, through 2D goals, navigation with `view_navigation.launch`.
+
+```shell
+$ source devel/setup.bash
+$ ./test_navigation.sh
+```
 
 ![navigation test](images/navigation_test.png)
 
@@ -212,6 +219,7 @@ A TurtleBot 2 is used as the simulated robot.
 ### ROS
 
 The Robot Operating System ([ROS](https://www.ros.org/about-ros/)) is a framework to develop robotic solutions.
+
 This projects runs on ROS version [Kinect Kame](https://wiki.ros.org/kinetic).
 
 #### Development setup
@@ -270,8 +278,7 @@ $ catkin_make
 
 ```shell
 $ mkdir src/map
-$ mkdir src/scripts
-$ mkdir src/rvizConfig
+$ mkdir src/world
 $ mkdir src/pick_objects
 $ mkdir src/add_markers
 ```
