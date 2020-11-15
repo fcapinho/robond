@@ -185,11 +185,18 @@ Start Gazebo with a TurtleBot in the basic building world with `turtlebot_world.
 
 Run Adaptive Monte Carlo Localization (AMCL) with `amcl_demo.launch`, referring to the map generated on the [previous](#build-a-map) section.
 
-Visualize and control, through 2D goals, navigation with `view_navigation.launch`.
+Visualize and control, through [2D goals](https://wiki.ros.org/navigation/Tutorials/Using%20rviz%20with%20the%20Navigation%20Stack#A2D_Nav_Goal), navigation with `view_navigation.launch`.
 
 ```shell
 $ source devel/setup.bash
 $ ./test_navigation.sh
+```
+
+Add the new `pick_objects` node to navigate to two positions: pick up and drop off.
+
+```shell
+$ source devel/setup.bash
+$ ./pick_objects.sh
 ```
 
 ![navigation test](images/navigation_test.png)
