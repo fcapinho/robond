@@ -77,6 +77,11 @@ string message
 
 ### Example run
 
+```shell
+$ source devel/setup.bash
+$ ./home_service.sh
+```
+
 Robot navigate to pick up position:
 ![pick up navigation](images/home_service_start.png)
 
